@@ -7,12 +7,17 @@ describe('Reading users out of the database', () => {
 
   beforeEach(done => {
     joe = new User({ name: 'Joe' })
+
     joe.save().then(() => done())
   })
 
   it('finds all users with the name of joe', done => {
     User.find({ name: 'Joe' }).then(users => {
-      console.log(users)
+      console.log(' ')
+      console.log('JOES ID: ', joe._id)
+      console.log('USERS ID: ', users[0]._id)
+      console.log(' ')
+      assert(users[0]._id.toString() === joe._id.toString())
       done()
     })
   })
